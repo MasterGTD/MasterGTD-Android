@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MasterGTD</string>
+    <string name="tab_feed">feed</string>
+    <string name="tab_explore">explore</string>
+    <string name="tab_mine">mine</string>
+</resources>
