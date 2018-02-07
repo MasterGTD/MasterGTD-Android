@@ -13,12 +13,12 @@ class MainActivity : AppCompatActivity() {
                 message.setText(R.string.tab_feed)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.tab_explore)
-                return@OnNavigationItemSelectedListener true
-            }
             R.id.navigation_notifications -> {
                 message.setText(R.string.tab_mine)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_dashboard -> {
+                message.setText(R.string.tab_explore)
                 return@OnNavigationItemSelectedListener true
             }
         }
