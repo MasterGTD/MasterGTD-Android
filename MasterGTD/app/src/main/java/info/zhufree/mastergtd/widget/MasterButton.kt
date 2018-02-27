@@ -58,7 +58,7 @@ class MasterButton : FloatingActionButton {
         subBtnGroup[0].viewTreeObserver.addOnGlobalLayoutListener (object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 subBtnGroup[0].viewTreeObserver.removeOnGlobalLayoutListener(this)
-//                只有在宽高大于0的情况下才会调用监听器里的方法
+//                只有在宽高大于0的情况下才会走动画显示
                 Logger.i(subBtnGroup[0].width.toString())
                 showNext(0)
             }

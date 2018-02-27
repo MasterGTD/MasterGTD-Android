@@ -10,15 +10,24 @@ import android.widget.LinearLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import info.zhufree.mastergtd.view.explore.ExploreFragment
+import info.zhufree.mastergtd.view.feed.FeedFragment
+import info.zhufree.mastergtd.view.user.UserFragment
 import info.zhufree.mastergtd.widget.MasterButton
 import info.zhufree.mastergtd.widget.SubButton
 import kotlinx.android.synthetic.main.activity_main.*
+
+
 
 class MainActivity : AppCompatActivity() {
     @BindView(R.id.master_btn)
     lateinit var masterBtn: MasterButton
     @BindView(R.id.main_mask)
     lateinit var maskLayout: LinearLayout
+
+    var feedFragment: FeedFragment? = null
+    var exploreFragment: ExploreFragment? = null
+    var userFragment: UserFragment? = null
 
     @OnClick(R.id.main_mask)
     fun hideMask(view: View) {
@@ -28,16 +37,22 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_home -> {
-                message.setText(R.string.tab_feed)
+            R.id.navigation_feed -> {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.frame_layout, feedFragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
-                message.setText(R.string.tab_mine)
+            R.id.navigation_user -> {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.frame_layout, userFragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.tab_explore)
+            R.id.navigation_explore -> {
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.frame_layout, exploreFragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -48,7 +63,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
+
+        supportActionBar?.hide()
+
+        feedFragment = FeedFragment()
+        exploreFragment = ExploreFragment()
+        userFragment = UserFragment()
+        val transaction = fragmentManager.beginTransaction()
+        transaction.add(R.id.frame_layout, feedFragment)
+        transaction.commit()
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
         masterBtn.setMask(maskLayout)
 //        habit
         masterBtn.addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_timeline_white_24dp))
