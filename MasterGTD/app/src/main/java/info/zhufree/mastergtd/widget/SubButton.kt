@@ -20,7 +20,7 @@ class SubButton : FloatingActionButton {
     }
 
     fun background(resId: Int) : SubButton {
-        super.setBackgroundResource(resId)
+        this.setImageResource(resId)
         return this
     }
 }

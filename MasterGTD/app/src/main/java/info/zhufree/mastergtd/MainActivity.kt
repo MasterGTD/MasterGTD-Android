@@ -2,6 +2,7 @@ package info.zhufree.mastergtd
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.FloatingActionButton.SIZE_AUTO
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.GONE
@@ -9,8 +10,8 @@ import android.widget.LinearLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
-import info.zhufree.mastergtd.utils.Toaster
 import info.zhufree.mastergtd.widget.MasterButton
+import info.zhufree.mastergtd.widget.SubButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -49,9 +50,16 @@ class MainActivity : AppCompatActivity() {
         ButterKnife.bind(this)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         masterBtn.setMask(maskLayout)
+//        habit
+        masterBtn.addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_timeline_white_24dp))
+//                percent_todo
+                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_hourglass_empty_white_24dp))
+//                project
+                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_list_white_24dp))
+//                task
+                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_note_add_white_24dp))
         masterBtn.setOnClickListener {
             masterBtn.clickBtn()
-            Toaster.show("test")
         }
     }
 }
