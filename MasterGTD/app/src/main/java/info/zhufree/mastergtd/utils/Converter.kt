@@ -7,9 +7,23 @@ import info.zhufree.mastergtd.MasterApplication
  *
  */
 object Converter {
+    var scale = MasterApplication.app?.resources?.displayMetrics?.density ?: 3f
+    val fontScale = MasterApplication.app?.resources?.displayMetrics?.scaledDensity ?: 2.5f
+
     fun dp2px(dip: Int) : Int {
-        var scale = MasterApplication.app?.resources?.displayMetrics?.density
-        scale = if (scale == null) 3f else scale
         return (dip.times(scale) + 0.5f).toInt()
+    }
+
+    fun px2dp(px: Float): Int {
+        return (px.div(scale) + 0.5f).toInt()
+    }
+
+    fun sp2px(sp: Int) : Int {
+
+        return (sp.times(fontScale) + 0.5f).toInt()
+    }
+
+    fun px2sp(px: Float): Int {
+        return (px.div(fontScale) + 0.5f).toInt()
     }
 }

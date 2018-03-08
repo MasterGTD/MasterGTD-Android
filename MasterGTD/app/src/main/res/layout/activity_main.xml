@@ -12,15 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </FrameLayout>
-    <LinearLayout
-        android:id="@+id/main_mask"
-        android:orientation="vertical"
-        android:background="@color/primaryColor"
-        android:alpha="0.3"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/main_mask"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/primaryColor"-->
+        <!--android:alpha="0.3"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</LinearLayout>-->
 
     <info.zhufree.mastergtd.widget.MasterButton
         android:id="@+id/master_btn"
@@ -31,6 +31,19 @@
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_add_white_24dp"/>
+
+    <info.zhufree.mastergtd.widget.SubButtonLayout
+        android:id="@+id/sub_btn_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:captionText="@string/app_name"
+        android:background="@color/primaryLightTransColor"
+        android:visibility="gone"
+        app:captionTextSize="14sp"
+        app:captionTextColor="@color/primaryDarkColor"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </info.zhufree.mastergtd.widget.SubButtonLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

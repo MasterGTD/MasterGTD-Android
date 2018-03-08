@@ -2,7 +2,7 @@ package info.zhufree.mastergtd
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.FloatingActionButton.SIZE_AUTO
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.GONE
@@ -14,7 +14,7 @@ import info.zhufree.mastergtd.view.explore.ExploreFragment
 import info.zhufree.mastergtd.view.feed.FeedFragment
 import info.zhufree.mastergtd.view.user.UserFragment
 import info.zhufree.mastergtd.widget.MasterButton
-import info.zhufree.mastergtd.widget.SubButton
+import info.zhufree.mastergtd.widget.SubButtonLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -22,16 +22,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     @BindView(R.id.master_btn)
     lateinit var masterBtn: MasterButton
-    @BindView(R.id.main_mask)
-    lateinit var maskLayout: LinearLayout
+    @BindView(R.id.sub_btn_container)
+    lateinit var subBtnContainer: SubButtonLayout
 
     var feedFragment: FeedFragment? = null
     var exploreFragment: ExploreFragment? = null
     var userFragment: UserFragment? = null
 
-    @OnClick(R.id.main_mask)
-    fun hideMask(view: View) {
-        view.visibility = GONE
+    @OnClick(R.id.sub_btn_container)
+    fun hideContainer(view: View) {
         masterBtn.hideSubBtn()
     }
 
@@ -63,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-
+        masterBtn.show();
         supportActionBar?.hide()
 
         feedFragment = FeedFragment()
@@ -75,15 +74,23 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        masterBtn.setMask(maskLayout)
+        masterBtn.setContainer(subBtnContainer)
 //        habit
-        masterBtn.addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_timeline_white_24dp))
-//                percent_todo
-                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_hourglass_empty_white_24dp))
-//                project
-                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_list_white_24dp))
-//                task
-                .addSubBtn(SubButton(this).size(SIZE_AUTO).background(R.drawable.ic_note_add_white_24dp))
+//        masterBtn.addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
+//                        .src(R.drawable.ic_timeline_white_24dp).notice("习惯"))
+////                percent_todo
+//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
+//                        .src(R.drawable.ic_hourglass_empty_white_24dp).notice("习惯"))
+////                project
+//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
+//                        .src(R.drawable.ic_list_white_24dp).notice("习惯"))
+////                task
+//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
+//                        .src(R.drawable.ic_note_add_white_24dp).notice("习惯"))
+        masterBtn.addSubBtn(FloatingActionButton(this), "习惯", R.drawable.ic_timeline_white_24dp)
+        masterBtn.addSubBtn(FloatingActionButton(this), "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
+        masterBtn.addSubBtn(FloatingActionButton(this), "清单", R.drawable.ic_list_white_24dp)
+        masterBtn.addSubBtn(FloatingActionButton(this), "待办事项", R.drawable.ic_note_add_white_24dp)
         masterBtn.setOnClickListener {
             masterBtn.clickBtn()
         }
