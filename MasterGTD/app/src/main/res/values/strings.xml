@@ -3,6 +3,7 @@
     <string name="tab_feed">动态</string>
     <string name="tab_explore">发现</string>
     <string name="tab_mine">我的</string>
+    <string name="item_placeholder_feed">这是一条动态</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_feed_fragment">Hello feed fragment</string>
@@ -12,4 +13,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_user_fragment">Hello user fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
