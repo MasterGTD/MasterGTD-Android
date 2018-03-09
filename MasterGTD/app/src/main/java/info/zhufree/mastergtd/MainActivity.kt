@@ -5,8 +5,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.View.GONE
-import android.widget.LinearLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -69,28 +67,18 @@ class MainActivity : AppCompatActivity() {
         exploreFragment = ExploreFragment()
         userFragment = UserFragment()
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.frame_layout, feedFragment)
-        transaction.commit()
+        if (!feedFragment!!.isAdded) {
+            transaction.add(R.id.frame_layout, feedFragment)
+            transaction.commit()
+        }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         masterBtn.setContainer(subBtnContainer)
-//        habit
-//        masterBtn.addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
-//                        .src(R.drawable.ic_timeline_white_24dp).notice("习惯"))
-////                percent_todo
-//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
-//                        .src(R.drawable.ic_hourglass_empty_white_24dp).notice("习惯"))
-////                project
-//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
-//                        .src(R.drawable.ic_list_white_24dp).notice("习惯"))
-////                task
-//                .addSubBtn(SubButtonLayout(this).size(SIZE_AUTO).textSize(14)
-//                        .src(R.drawable.ic_note_add_white_24dp).notice("习惯"))
-        masterBtn.addSubBtn(FloatingActionButton(this), "习惯", R.drawable.ic_timeline_white_24dp)
-        masterBtn.addSubBtn(FloatingActionButton(this), "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
-        masterBtn.addSubBtn(FloatingActionButton(this), "清单", R.drawable.ic_list_white_24dp)
-        masterBtn.addSubBtn(FloatingActionButton(this), "待办事项", R.drawable.ic_note_add_white_24dp)
+        masterBtn.addSubBtn(this, "习惯", R.drawable.ic_timeline_white_24dp)
+        masterBtn.addSubBtn(this, "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
+        masterBtn.addSubBtn(this, "清单", R.drawable.ic_list_white_24dp)
+        masterBtn.addSubBtn(this, "待办事项", R.drawable.ic_note_add_white_24dp)
         masterBtn.setOnClickListener {
             masterBtn.clickBtn()
         }

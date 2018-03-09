@@ -32,8 +32,8 @@ class MasterButton : FloatingActionButton {
         if (this.btnContainer == null) this.btnContainer = btnContainer
     }
 
-    fun addSubBtn(subBtn: FloatingActionButton, notice: String, resId: Int) : MasterButton {
-        btnContainer?.add(subBtn, notice, resId)
+    fun addSubBtn(context: Context, notice: String, resId: Int) : MasterButton {
+        btnContainer?.add(FloatingActionButton(context), notice, resId)
 
         return this
     }

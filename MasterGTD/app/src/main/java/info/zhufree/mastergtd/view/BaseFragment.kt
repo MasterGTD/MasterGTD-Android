@@ -1,16 +1,11 @@
 package info.zhufree.mastergtd.view
 
+import android.app.Fragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import butterknife.Unbinder
 
-import info.zhufree.mastergtd.R
 
 /**
  * A simple [Fragment] subclass.
@@ -21,6 +16,7 @@ import info.zhufree.mastergtd.R
  * create an instance of this fragment.
  */
 open class BaseFragment : Fragment() {
+
     var unBinder: Unbinder? = null
 
     // TODO: Rename and change types of parameters
