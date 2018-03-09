@@ -1,6 +1,7 @@
 package info.zhufree.mastergtd.widget
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
@@ -11,16 +12,23 @@ import android.widget.RelativeLayout
 import info.zhufree.mastergtd.R
 import info.zhufree.mastergtd.utils.Converter
 import info.zhufree.mastergtd.utils.Logger
+import info.zhufree.mastergtd.view.todo.TodoActivity
 
 /**
  * Created by Free on 2018/2/3.
  *
  */
 
+const val TODO_TYPE_HABIT = 0
+const val TODO_TYPE_PERCENT = 2
+const val TODO_TYPE_PROJECT = 3
+const val TODO_TYPE_CHECKLIST = 4
+const val TODO_TYPE_TASK = 5
+
+
 class MasterButton : FloatingActionButton {
     private var btnContainer: SubButtonLayout? = null
     private val intervalHeight = Converter.dp2px(16)
-
 
     private var isSubBtnShown = false
 
@@ -32,8 +40,14 @@ class MasterButton : FloatingActionButton {
         if (this.btnContainer == null) this.btnContainer = btnContainer
     }
 
-    fun addSubBtn(context: Context, notice: String, resId: Int) : MasterButton {
-        btnContainer?.add(FloatingActionButton(context), notice, resId)
+    fun addSubBtn(context: Context, type: Int, notice: String, resId: Int) : MasterButton {
+        val fab = FloatingActionButton(context)
+        fab.setOnClickListener {
+            val intent = Intent(context, TodoActivity::class.java)
+            intent.putExtra("TODO_TYPE", type)
+            context.startActivity(intent)
+        }
+        btnContainer?.add(fab, notice, resId)
 
         return this
     }

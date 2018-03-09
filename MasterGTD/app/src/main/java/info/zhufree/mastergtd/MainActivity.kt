@@ -1,5 +1,6 @@
 package info.zhufree.mastergtd
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
@@ -10,6 +11,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import info.zhufree.mastergtd.view.explore.ExploreFragment
 import info.zhufree.mastergtd.view.feed.FeedFragment
+import info.zhufree.mastergtd.view.todo.TodoActivity
 import info.zhufree.mastergtd.view.user.UserFragment
 import info.zhufree.mastergtd.widget.MasterButton
 import info.zhufree.mastergtd.widget.SubButtonLayout
@@ -63,9 +65,9 @@ class MainActivity : AppCompatActivity() {
         masterBtn.show();
         supportActionBar?.hide()
 
-        feedFragment = FeedFragment()
-        exploreFragment = ExploreFragment()
-        userFragment = UserFragment()
+        feedFragment = FeedFragment.newInstance()
+        exploreFragment = ExploreFragment.newInstance()
+        userFragment = UserFragment.newInstance()
         val transaction = fragmentManager.beginTransaction()
         if (!feedFragment!!.isAdded) {
             transaction.add(R.id.frame_layout, feedFragment)
@@ -75,10 +77,11 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         masterBtn.setContainer(subBtnContainer)
-        masterBtn.addSubBtn(this, "习惯", R.drawable.ic_timeline_white_24dp)
-        masterBtn.addSubBtn(this, "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
-        masterBtn.addSubBtn(this, "清单", R.drawable.ic_list_white_24dp)
-        masterBtn.addSubBtn(this, "待办事项", R.drawable.ic_note_add_white_24dp)
+        masterBtn.addSubBtn(this, 0, "习惯任务", R.drawable.ic_timeline_white_24dp)
+        masterBtn.addSubBtn(this, 1, "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
+        masterBtn.addSubBtn(this, 2, "项目任务", R.drawable.ic_event_white_24dp)
+        masterBtn.addSubBtn(this, 3, "清单", R.drawable.ic_list_white_24dp)
+        masterBtn.addSubBtn(this, 4, "待办事项", R.drawable.ic_note_add_white_24dp)
         masterBtn.setOnClickListener {
             masterBtn.clickBtn()
         }
