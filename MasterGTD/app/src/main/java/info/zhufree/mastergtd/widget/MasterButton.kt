@@ -20,10 +20,10 @@ import info.zhufree.mastergtd.view.todo.TodoActivity
  */
 
 const val TODO_TYPE_HABIT = 0
-const val TODO_TYPE_PERCENT = 2
-const val TODO_TYPE_PROJECT = 3
-const val TODO_TYPE_CHECKLIST = 4
-const val TODO_TYPE_TASK = 5
+const val TODO_TYPE_PERCENT = 1
+const val TODO_TYPE_PROJECT = 2
+const val TODO_TYPE_CHECKLIST = 3
+const val TODO_TYPE_TASK = 4
 
 
 class MasterButton : FloatingActionButton {

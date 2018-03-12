@@ -2,6 +2,7 @@ package info.zhufree.mastergtd.view
 
 import android.app.Fragment
 import android.net.Uri
+import android.os.Bundle
 import butterknife.Unbinder
 
 
@@ -20,13 +21,13 @@ open class BaseFragment : Fragment() {
 
     private var mListener: OnFragmentInteractionListener? = null
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 //        if (arguments != null) {
 //            mParam1 = arguments.getString(ARG_PARAM1)
 //            mParam2 = arguments.getString(ARG_PARAM2)
 //        }
-//    }
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {

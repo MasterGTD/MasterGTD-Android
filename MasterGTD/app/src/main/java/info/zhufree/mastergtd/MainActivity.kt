@@ -1,9 +1,8 @@
 package info.zhufree.mastergtd
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.internal.BottomNavigationItemView
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import butterknife.BindView
@@ -11,7 +10,6 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import info.zhufree.mastergtd.view.explore.ExploreFragment
 import info.zhufree.mastergtd.view.feed.FeedFragment
-import info.zhufree.mastergtd.view.todo.TodoActivity
 import info.zhufree.mastergtd.view.user.UserFragment
 import info.zhufree.mastergtd.widget.MasterButton
 import info.zhufree.mastergtd.widget.SubButtonLayout
@@ -25,9 +23,9 @@ class MainActivity : AppCompatActivity() {
     @BindView(R.id.sub_btn_container)
     lateinit var subBtnContainer: SubButtonLayout
 
-    var feedFragment: FeedFragment? = null
-    var exploreFragment: ExploreFragment? = null
-    var userFragment: UserFragment? = null
+    private var feedFragment: FeedFragment? = null
+    private var exploreFragment: ExploreFragment? = null
+    private var userFragment: UserFragment? = null
 
     @OnClick(R.id.sub_btn_container)
     fun hideContainer(view: View) {
@@ -37,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_feed -> {
+                supportFragmentManager
                 val transaction = fragmentManager.beginTransaction()
                 transaction.replace(R.id.frame_layout, feedFragment)
                 transaction.commit()
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
-        masterBtn.show();
+        masterBtn.show()
         supportActionBar?.hide()
 
         feedFragment = FeedFragment.newInstance()

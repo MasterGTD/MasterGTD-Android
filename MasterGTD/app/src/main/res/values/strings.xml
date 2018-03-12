@@ -4,6 +4,9 @@
     <string name="tab_explore">发现</string>
     <string name="tab_mine">我的</string>
     <string name="item_placeholder_feed">这是一条动态</string>
+    <string name="sure">确定</string>
+
+    <string name="new_task_example">标题（例：下班去超市买东西）</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_feed_fragment">Hello feed fragment</string>

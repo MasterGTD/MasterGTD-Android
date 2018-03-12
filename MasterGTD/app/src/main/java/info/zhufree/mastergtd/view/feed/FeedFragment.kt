@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_feed.view.*
  * create an instance of this fragment.
  */
 class FeedFragment : BaseFragment() {
-    var dataList = emptyList<String>().toMutableList()
+    var dataList = mutableListOf<String>()
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
@@ -52,7 +52,6 @@ class FeedFragment : BaseFragment() {
     }
 
     override fun onAttach(context: Context?) {
-        Logger.i("onAttach")
         super.onAttach(context)
         dataList.add("test1")
         dataList.add("test2")
