@@ -2,7 +2,6 @@ package info.zhufree.mastergtd.view.todo
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import butterknife.ButterKnife
 import info.zhufree.mastergtd.R
 import info.zhufree.mastergtd.view.BaseFragment
 import info.zhufree.mastergtd.view.todo.task.AllTaskFragment
@@ -17,7 +16,6 @@ class TodoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo)
-        ButterKnife.bind(this)
         supportActionBar?.hide()
 
         todoType = intent.getIntExtra("TODO_TYPE", 0)

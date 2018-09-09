@@ -5,15 +5,11 @@ import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
-import butterknife.ButterKnife
 
 import info.zhufree.mastergtd.R
-import info.zhufree.mastergtd.utils.Logger
 import info.zhufree.mastergtd.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_feed.view.*
 
@@ -61,7 +57,6 @@ class FeedFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val contentView = inflater!!.inflate(R.layout.fragment_feed, container, false)
-        unBinder = ButterKnife.bind(this, contentView)
 
         val rvFeedRecyclerView = contentView.rv_feed_list
         rvFeedRecyclerView.adapter = FeedAdapter(context, dataList)

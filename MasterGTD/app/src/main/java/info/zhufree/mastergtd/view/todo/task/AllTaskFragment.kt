@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.ButterKnife
 
 import info.zhufree.mastergtd.R
 import info.zhufree.mastergtd.view.BaseFragment
@@ -48,7 +47,6 @@ class AllTaskFragment : BaseFragment() {
                               savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         val contentView = inflater.inflate(R.layout.fragment_all_task, container, false)
-        unBinder = ButterKnife.bind(this, contentView)
         taskRecyclerView?.adapter = AllTaskAdapter(context, mutableListOf())
         val lm = LinearLayoutManager(context)
         lm.orientation =  LinearLayoutManager.VERTICAL

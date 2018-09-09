@@ -1,36 +1,19 @@
 package info.zhufree.mastergtd
 
 import android.os.Bundle
-import android.support.design.internal.BottomNavigationItemView
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import info.zhufree.mastergtd.view.explore.ExploreFragment
 import info.zhufree.mastergtd.view.feed.FeedFragment
 import info.zhufree.mastergtd.view.user.UserFragment
-import info.zhufree.mastergtd.widget.MasterButton
-import info.zhufree.mastergtd.widget.SubButtonLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 
 class MainActivity : AppCompatActivity() {
-    @BindView(R.id.master_btn)
-    lateinit var masterBtn: MasterButton
-    @BindView(R.id.sub_btn_container)
-    lateinit var subBtnContainer: SubButtonLayout
-
     private var feedFragment: FeedFragment? = null
     private var exploreFragment: ExploreFragment? = null
     private var userFragment: UserFragment? = null
-
-    @OnClick(R.id.sub_btn_container)
-    fun hideContainer(view: View) {
-        masterBtn.hideSubBtn()
-    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -60,9 +43,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
-        masterBtn.show()
+        master_btn.show()
         supportActionBar?.hide()
+        sub_btn_container.setOnClickListener {
+            master_btn.hideSubBtn()
+        }
 
         feedFragment = FeedFragment.newInstance()
         exploreFragment = ExploreFragment.newInstance()
@@ -75,14 +60,14 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        masterBtn.setContainer(subBtnContainer)
-        masterBtn.addSubBtn(this, 0, "习惯任务", R.drawable.ic_timeline_white_24dp)
-        masterBtn.addSubBtn(this, 1, "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
-        masterBtn.addSubBtn(this, 2, "项目任务", R.drawable.ic_event_white_24dp)
-        masterBtn.addSubBtn(this, 3, "清单", R.drawable.ic_list_white_24dp)
-        masterBtn.addSubBtn(this, 4, "待办事项", R.drawable.ic_note_add_white_24dp)
-        masterBtn.setOnClickListener {
-            masterBtn.clickBtn()
+        master_btn.setContainer(sub_btn_container)
+        master_btn.addSubBtn(this, 0, "习惯任务", R.drawable.ic_timeline_white_24dp)
+        master_btn.addSubBtn(this, 1, "进度任务", R.drawable.ic_hourglass_empty_white_24dp)
+        master_btn.addSubBtn(this, 2, "项目任务", R.drawable.ic_event_white_24dp)
+        master_btn.addSubBtn(this, 3, "清单", R.drawable.ic_list_white_24dp)
+        master_btn.addSubBtn(this, 4, "待办事项", R.drawable.ic_note_add_white_24dp)
+        master_btn.setOnClickListener {
+            master_btn.clickBtn()
         }
     }
 }

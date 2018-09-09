@@ -3,7 +3,6 @@ package info.zhufree.mastergtd.view
 import android.app.Fragment
 import android.net.Uri
 import android.os.Bundle
-import butterknife.Unbinder
 
 
 /**
@@ -13,8 +12,6 @@ import butterknife.Unbinder
  * to handle interaction events.
  */
 open class BaseFragment : Fragment() {
-
-    var unBinder: Unbinder? = null
 
 //    private var mParam1: String? = null
 //    private var mParam2: String? = null
@@ -47,7 +44,6 @@ open class BaseFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        unBinder?.unbind()
     }
 
     override fun onDetach() {

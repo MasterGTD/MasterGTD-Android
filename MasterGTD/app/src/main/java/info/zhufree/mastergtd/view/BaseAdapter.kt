@@ -6,36 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 
 /**
- * Created by zhufree on 2018/3/8.
- * 各种Adapter基类
+ * Created by zhufree on 2018/8/23.
+ * Adapter基类
+ * 主要处理item点击长按事件监听器的绑定
+ * [H] Holder
+ * [T] 数据Model
+ * 继承时要指定
  */
 
-abstract class BaseRecycleAdapter<T : Any>(context: Context, dataList: MutableList<T>)
-    : RecyclerView.Adapter<BaseViewHolder>(), View.OnLongClickListener, View.OnClickListener {
+abstract class BaseAdapter<H: RecyclerView.ViewHolder, T: Any>(context: Context?, val dataList: MutableList<T>)
+    : RecyclerView.Adapter<H>(),
+        View.OnLongClickListener, View.OnClickListener {
+    // 点击和长按监听器定义
     private var mOnItemClickListener: OnItemClickListener? = null
     private var mOnItemLongClickListener: OnItemLongClickListener? = null
-    val mInflater: LayoutInflater = LayoutInflater.from(context)
-    var mDataList = dataList
-    var mItemViewList = emptyList<View>().toMutableList()
+    var mInflater: LayoutInflater? = LayoutInflater.from(context)
+    var mContext: Context? = context
 
-    //添加数据
-    fun addItem(newList: List<T>) {
-        mDataList.addAll(newList)
-        notifyDataSetChanged()
-    }
+//    abstract fun refreshItem(data: List<T>)
+//    abstract fun addItem(data: T)
 
-    // 更新数据
-    fun refreshItem(newList: List<T>) {
-        if (newList.isNotEmpty()) {
-            mDataList.clear()
-            mDataList.addAll(newList)
-        }
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int {
-        return mDataList.size
-    }
 
     override fun onClick(v: View) {
         mOnItemClickListener?.onItemClick(v, v.tag as Int)
@@ -62,4 +52,7 @@ abstract class BaseRecycleAdapter<T : Any>(context: Context, dataList: MutableLi
         this.mOnItemClickListener = listener
     }
 
+    override fun getItemCount(): Int {
+        return dataList.size
+    }
 }
