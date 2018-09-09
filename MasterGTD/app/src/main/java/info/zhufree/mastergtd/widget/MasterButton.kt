@@ -2,17 +2,12 @@ package info.zhufree.mastergtd.widget
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.RelativeLayout
-import info.zhufree.mastergtd.R
 import info.zhufree.mastergtd.utils.Converter
-import info.zhufree.mastergtd.utils.Logger
-import info.zhufree.mastergtd.view.todo.TodoActivity
+import info.zhufree.mastergtd.view.todo.AddTodoActivity
 
 /**
  * Created by Free on 2018/2/3.
@@ -43,7 +38,7 @@ class MasterButton : FloatingActionButton {
     fun addSubBtn(context: Context, type: Int, notice: String, resId: Int) : MasterButton {
         val fab = FloatingActionButton(context)
         fab.setOnClickListener {
-            val intent = Intent(context, TodoActivity::class.java)
+            val intent = Intent(context, AddTodoActivity::class.java)
             intent.putExtra("TODO_TYPE", type)
             context.startActivity(intent)
         }

@@ -9,6 +9,11 @@ import android.view.ViewGroup
 
 import info.zhufree.mastergtd.R
 import info.zhufree.mastergtd.view.BaseFragment
+import info.zhufree.mastergtd.view.todo.HabitFragment
+import info.zhufree.mastergtd.view.todo.PercentFragment
+import info.zhufree.mastergtd.view.todo.TodoViewPagerAdapter
+import info.zhufree.mastergtd.view.todo.task.AllTaskFragment
+import kotlinx.android.synthetic.main.fragment_user.*
 
 
 /**
@@ -17,6 +22,9 @@ import info.zhufree.mastergtd.view.BaseFragment
  * create an instance of this fragment.
  */
 class UserFragment : BaseFragment() {
+    private var fragmentList: MutableList<BaseFragment> = emptyList<BaseFragment>().toMutableList()
+    private var titleList: MutableList<String> = emptyList<String>().toMutableList()
+
     companion object {
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //        private val ARG_PARAM1 = "param1"
@@ -44,8 +52,18 @@ class UserFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentList.add(AllTaskFragment.newInstance())
+        fragmentList.add(HabitFragment.newInstance())
+        fragmentList.add(PercentFragment.newInstance())
+        titleList.add("Task")
+        titleList.add("习惯")
+        titleList.add("进度")
         return inflater!!.inflate(R.layout.fragment_user, container, false)
     }
 
-
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        val todoViewPagerAdapter = TodoViewPagerAdapter(fragmentManager, fragmentList, titleList)
+        vpTodo.adapter = todoViewPagerAdapter
+        tabTodo.setupWithViewPager(vpTodo)
+    }
 }// Required empty public constructor
