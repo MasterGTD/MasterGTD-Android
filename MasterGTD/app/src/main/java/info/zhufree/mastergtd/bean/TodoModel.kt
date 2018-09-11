@@ -7,11 +7,19 @@ import kotlinx.serialization.SerialName
  *
  */
 
-data class TodoModel(@SerialName("todo_id") var id: String? = "",
+class TodoModel(@SerialName("todo_id") var id: String? = "",
                      @SerialName("todo_content") var content: String? = "",
                      @SerialName("todo_in_project") var projectName: String? = "",
                      @SerialName("todo_tag") var tag: String? = "",
                      @SerialName("todo_complete") var isComplete: Boolean? = false,
                      @SerialName("todo_create_at") var createdAt: String? = "2018-09-09T07:19:11.277Z",
                      @SerialName("todo_update_at") var updatedAt: String? = "2018-09-09T07:19:11.277Z",
-                     @SerialName("todo_user") var userId: Int = -1)
+                     @SerialName("todo_user") var userId: Int = -1) {
+    override fun toString(): String {
+        return "{\"todo_content\": \"$content\",\n" +
+                "\"todo_in_project\": \"$projectName\",\n" +
+                "\"todo_tag\": \"$tag\",\n" +
+                "\"todo_complete\": $isComplete,\n" +
+                "\"todo_user\": 1 }"
+    }
+}
